@@ -16,7 +16,10 @@ class Book {
         String publisher
         String description
         String yearOfPub
-    
+        /*
+        String genre
+        String isbn
+        */
     static	mapping = {
         autoTimestamp true
         table name: "books"

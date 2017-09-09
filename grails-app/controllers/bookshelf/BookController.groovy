@@ -119,11 +119,12 @@ class BookController {
 	def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         if(max > Book.list(params).size()){
-            println max
-            println Book.list(params).size()
             params.max = Book.list(params).size()
         }
         render view:"list" , model:[max:params.max,bookInstanceList:Book.list(params),bookInstanceCount: Book.count()]
+    }
+    def googleInfo(){
+        render(view:"googleInfo")
     }
     
     
