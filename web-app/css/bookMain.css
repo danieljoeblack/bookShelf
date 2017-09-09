@@ -103,6 +103,6 @@ and open the template in the editor.
 }
 
 /*for list view*/
-#numberOfResults{
+#returnedResults{
     float: right;
 }

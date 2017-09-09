@@ -10,9 +10,13 @@
 	<title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 
-<body>
-
-<section ng-app="myApp" ng-controller="myCtrl" id="list-book" class="first">    
+<body>                
+<section ng-app="myApp" ng-controller="myCtrl" id="list-book" class="first">
+    <div id="returnedResults">
+        <g:uploadForm  action="list">
+            <label for="max">Returned Results: <input size="2" name="max" id="max" type="text" value="${max}"></label>
+        </g:uploadForm>
+    </div>
 	<table class="table table-bordered margin-top-medium">
 		<thead>
 			<tr>
@@ -39,9 +43,7 @@
 			</tr>
 		</g:each>
                 <br>
-                <g:uploadForm id="returnedResults" action="list">
-                    <label for="max">Returned Results: <input name="max" id="max" type="text" value="${max}"></label>
-                </g:uploadForm>
+
                 <input hidden type="text" value="{{maxChecks}}" name="maxChecks">
                 <input onclick="confirmDeletion()" class="btn btn-default" value="Delete Checked Books" type="button" />
                 <g:actionSubmit hidden id="deleteButton"  action="deleteCheckedBooks" value="Delete Checked Books"/>
