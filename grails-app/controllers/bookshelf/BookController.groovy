@@ -121,7 +121,40 @@ class BookController {
         if(max > Book.list(params).size()){
             params.max = Book.list(params).size()
         }
-        render view:"list" , model:[max:params.max,bookInstanceList:Book.list(params),bookInstanceCount: Book.count()]
+        def list = Book.createCriteria().list(params){
+                    if ( params.title ) {
+                        ilike("title", "%${params.title}%")
+                    }
+                    if ( params.author ) {
+                        ilike("author", "%${params.author}%")
+                    }
+                    if ( params.publisher ) {
+                        ilike("publisher", "%${params.publisher}%")
+                    }
+                    if ( params.yearOfPub ) {
+                        ilike("yearOfPub", "%${params.yearOfPub}%")
+                    }
+                    if(params.genre){
+                        ilike("genre","%${params.genre}%")
+                    }
+                    if(params.isbn){
+                        ilike("isbn","%${params.isbn}%")
+                    }
+                    if(params.rating){
+                        if(params.rating.contains(">")){
+                            gt("rating",params.rating.replace(">",""))
+                        }
+                        else if(params.rating.contains("<")){
+                            lt("rating",params.rating.replace("<",""))
+                        }else{
+                            ilike("rating","${params.rating}")
+                        }
+                    }
+                    if(params.publicDomain){
+                        ilike("publicDomain","%${params.publicDomain}%")
+                    }
+                    }
+        render view:"list" , model:[max:params.max,bookInstanceList:list,bookInstanceCount: Book.count()]
     }
     def googleInfo(){
         render(view:"googleInfo")

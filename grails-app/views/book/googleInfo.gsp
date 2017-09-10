@@ -18,7 +18,19 @@
         <section ng-app="bookSearch" ng-controller="searchCtrl">
             <label for="isbn"><input ng-model="isbn" type="text" id="isbn" name="isbn"></label>
             <input ng-click="searchBook()" type="button" value="Search">
-            {{returnedData}}
+            <div id="book">
+                <p>Title: <br>&nbsp;{{title}}</p>
+                <p>Author: <br>&nbsp;{{author}}</p>
+                <p>Date of Publication: <br>&nsbp;{{dateOfPub}}</p>
+                <p>Description: <br>&nbsp;{{desc}}</p>
+                <p>Page Count: <br>&nbsp;{{pageCount}}</p>
+                <p>Genre: <br>&nbsp;{{genre}}</p>
+                <p>Rating: <br>&nbsp;{{rating}}</p>
+                <p>Number of Votes:<br>&nbsp;{{voters}}</p>
+                <p>Image: </p><br>
+                &nbsp;<img alt="Book Image" src="{{imageLink}}">
+                <p>Public Domain: <br>&nbsp;{{publicDomain}}</p>
+            </div>
         </section>
         <script>
         //Angular
@@ -33,7 +45,16 @@
                 console.log(url)
                 $http.get(url).then(function(data){
                     console.log(data)
-                    $scope.returnedData = data.data.items[0].volumeInfo.authors
+                    $scope.title = data.data.items[0].volumeInfo.title
+                    $scope.author = data.data.items[0].volumeInfo.authors[0]
+                    $scope.dateOfPub = data.data.items[0].volumeInfo.publishedDate
+                    $scope.desc = data.data.items[0].volumeInfo.description
+                    $scope.pageCount = data.data.items[0].volumeInfo.pageCount
+                    $scope.genre = data.data.items[0].volumeInfo.categories[0]
+                    $scope.rating = data.data.items[0].volumeInfo.averageRating
+                    $scope.voters= data.data.items[0].volumeInfo.ratingsCount
+                    $scope.imageLink = data.data.items[0].volumeInfo.imageLinks.thumbnail
+                    $scope.publicDomain = data.data.items[0].accessInfo.publicDomain
                 });
             }
         });

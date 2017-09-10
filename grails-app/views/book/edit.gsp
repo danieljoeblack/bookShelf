@@ -4,6 +4,7 @@
 
 <head>
 	<meta name="layout" content="kickstart" />
+        
 	<g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}" />
 	<title><g:message code="default.edit.label" args="[entityName]" /></title>
 </head>

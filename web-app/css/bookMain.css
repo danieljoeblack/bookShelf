@@ -106,3 +106,21 @@ and open the template in the editor.
 #returnedResults{
     float: right;
 }
+#divToFix{
+   background-color: #F0F0F0;
+   text-align: center;
+   position:fixed;
+   top: 71px;
+   left: 13px;
+   width:auto;
+   border-radius: 8px;
+};
+#searchForm{
+    display: inline;
+}
+.searchFormInputs{
+    width: 90%;
+    margin-bottom: .5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
