@@ -1,13 +1,35 @@
 <%@ page import="bookshelf.Book" %>
     <div ng-app="bookSearch" ng-controller="searchCtrl">
-        <label for="isbn">Search By</label>
+        <label style="margin-top: 10px;" for="search">Search By</label>
          <select ng-model="property">
             <option selected value="title">Title</option>
             <option value="ibsn">IBSN</option>
          </select>
-        
-            <input ng-model="isbn" type="text" id="isbn" name="isbn">
-            <input ng-click="searchBook()" type="button" value="Search"><br>
+        <div class="searchForm">
+            <input autocomplete="off" ng-model="search" type="text" id="search" name="search">
+            <input style="margin-bottom: 0px;margin-top: -10px;" class="btn btn-group-sm" id="searchInput" ng-click="searchBook()" type="button" value="Search"><br>
+        </div>
+        <hr>
+            <div class="container">
+              <div class="dropdown">
+                <button style="display:none" class="btn btn-primary droppeddown-toggle" id="menu1" type="button" data-toggle="dropdown">Dropdown Example
+                <span class="caret"></span></button>
+                <ul id="dropDownMenu" class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                  <li ng-repeat="item in items">
+                      <table class="bookRecord">
+                            <tr  ng-click="getRecord(item)">
+                                <td style="width:75px">
+                                    <img alt="No Image Avalible" height="125" width="75"  src="{{item.volumeInfo.imageLinks.smallThumbnail}}">
+                                <td>
+                                <td>
+                                    <span ng-bind="item.volumeInfo.title"></span>
+                                <td>
+                            </tr>
+                      </table>
+                  </li>  
+                </ul>
+              </div>
+            </div>
                         <g:if test="${	params.action != "edit"}">
                             <img id="bookPic" src="{{imageLink}}">
                         </g:if>
@@ -115,12 +137,116 @@
         var app = angular.module('bookSearch', []);
         
         app.controller('searchCtrl', function($scope,$http) {
-            $scope.isbn = 
+            var beenClicked = false
+            numberOfChars = 0
             returnedData = ""
             $scope.imageLink
             $scope.property = "title"
+            $scope.$watch('search',function(newVal,oldVal){
+                numberOfChars = numberOfChars + 1;
+                if(newVal != 'undefined' && newVal && numberOfChars%4==0){
+                    currentRequest = Date()
+                    var url = "https://www.googleapis.com/books/v1/volumes?q="+$scope.property+":"+$scope.search+"&key=AIzaSyCcSAlb-pTw6PAdDhMh_6OitB3I7ZDxxGY"
+                        lastWasReturned = false
+                        $http.get(url).then(function(data){
+                            $scope.items = data.data.items;
+                            console.log(data.data.items)
+                        });
+                    console.log(beenClicked)
+                    if(beenClicked == false){
+                        document.getElementById("menu1").click();
+                        beenClicked = true;
+                    };
+                };
+                
+            });
+            $scope.getRecord = function(item){
+                console.log(item)
+                if(item.volumeInfo.title){
+                        $scope.title = item.volumeInfo.title
+                        $('#title').css('background-color', '#ffffff')
+                    }else{
+                        $scope.title = ""
+                        $('#title').css('background-color', '#dfe575')
+                    }
+                    if(item.volumeInfo.authors[0]){
+                        $scope.author = item.volumeInfo.authors[0]
+                        $('#author').css('background-color', '#ffffff')
+                    }else{
+                        $scope.author=""
+                        $('#author').css('background-color', '#dfe575')
+                    }
+                    if(item.volumeInfo.publishedDate){
+                        $scope.yearOfPub = item.volumeInfo.publishedDate
+                        $('#yearOfPub').css('background-color', '#ffffff')
+                    }else{
+                        $scope.yearOfPub = ""
+                        $('#yearOfPub').css('background-color', '#dfe575')
+                    }
+                    if(item.volumeInfo.publisher){
+                        $scope.publisher = item.volumeInfo.publisher
+                        $('#publisher').css('background-color', '#ffffff')
+                    }else{
+                        $scope.publisher = ""
+                        $('#publisher').css('background-color', '#dfe575')
+                    }
+                    if(item.volumeInfo.description){
+                        $('#description').css('background-color', '#ffffff')
+                        $scope.description = item.volumeInfo.description
+                    }else{
+                        $scope.description = ""
+                        $('#description').css('background-color', '#dfe575')
+                    }
+                    if(item.volumeInfo.pageCount){
+                        $('#pageCount').css('background-color', '#ffffff')
+                        $scope.pageCount = item.volumeInfo.pageCount
+                    }else{
+                        $scope.pageCount = ""
+                        $('#pageCount').css('background-color', '#dfe575')
+                    }
+                    if(item.volumeInfo.categories){
+                        $('#genre').css('background-color', '#ffffff')
+                        $scope.genre = item.volumeInfo.categories[0]
+                    }else{
+                        $scope.genre = ""
+                        $('#genre').css('background-color', '#dfe575')
+                    }
+                    if(item.volumeInfo.averageRating){
+                        $('#rating').css('background-color', '#ffffff')
+                        $scope.rating = item.volumeInfo.averageRating
+                    }else{
+                        $scope.rating = ""
+                        $('#rating').css('background-color', '#dfe575')
+                    }
+                    if(item.volumeInfo.ratingsCount){
+                        $('#numOfRates').css('background-color', '#ffffff')
+                        $scope.numOfRates= item.volumeInfo.ratingsCount
+                    }else{
+                        $scope.numOfRates = ""
+                        $('#numOfRates').css('background-color', '#dfe575')
+                    }
+                    if(item.volumeInfo.imageLinks.thumbnail){
+                        $scope.imageLink = item.volumeInfo.imageLinks.thumbnail
+                    }else{
+                        $('#bookPic').css('display', 'none')
+                    }
+                    if(item.accessInfo.publicDomain){
+                        $('#publicDomain').css('background-color', '#ffffff')
+                        $scope.publicDomain = item.accessInfo.publicDomain
+                    }else{
+                        $scope.publicDomain = ""
+                        $('#publicDomain').css('background-color', '#dfe575')
+                    }
+                    if(true){
+                        $('#isbn').css('background-color', '#ffffff')
+                         $scope.isbn = item.volumeInfo.industryIdentifiers[0].identifier
+                    }else{
+                        $scope.isbn = ""
+                        $('#isbn').css('background-color', '#dfe575')
+                    }
+            }
             $scope.searchBook = function(){
-                var url = "https://www.googleapis.com/books/v1/volumes?q="+$scope.property+":"+$scope.isbn
+                var url = "https://www.googleapis.com/books/v1/volumes?q="+$scope.property+":"+$scope.search
                 console.log(url)
                 $http.get(url).then(function(data){
                     console.log(data)
@@ -198,6 +324,13 @@
                     }else{
                         $scope.publicDomain = ""
                         $('#publicDomain').css('background-color', '#dfe575')
+                    }
+                    if(true){
+                        $('#isbn').css('background-color', '#ffffff')
+                         $scope.isbn = data.data.items[0].volumeInfo.industryIdentifiers[0].identifier
+                    }else{
+                        $scope.isbn = ""
+                        $('#isbn').css('background-color', '#dfe575')
                     }
                 });
             }

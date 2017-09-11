@@ -8,7 +8,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}" />
 	<title><g:message code="default.list.label" args="[entityName]" /></title>
-
 </head>
 
 <body>                
@@ -57,7 +56,7 @@
 				<td>${fieldValue(bean: bookInstance, field: "author")}</td>
                                 <td>${fieldValue(bean: bookInstance, field: "publisher")}</td>
                                 <td>${fieldValue(bean: bookInstance, field: "yearOfPub")}</td>
-                                <td>${fieldValue(bean: bookInstance, field: "description")}</td>
+                                <td>${bookInstance.getShorterDescription()}<a id="descHover" href="#" data-toggle="tooltip" title="${fieldValue(bean: bookInstance, field: "description")}">Hover for full description</a></td>
                                 <td><button type="button" class="btn" data-toggle="modal" data-target="#myModal${fieldValue(bean: bookInstance, field: "id")}">Extended Info</button></td>
                                 <td style="text-align: center"><input type="checkbox" name="deleteFlag${i}" value="${bookInstance.id}"></td>
                         </tr>
@@ -157,6 +156,9 @@
                 tickAll();
             }
         }
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
 </script>
 </body>
 

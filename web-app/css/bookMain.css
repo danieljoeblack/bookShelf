@@ -114,7 +114,7 @@ and open the template in the editor.
    left: 13px;
    width:auto;
    border-radius: 8px;
-};
+}
 #searchForm{
     display: inline;
 }
@@ -123,4 +123,61 @@ and open the template in the editor.
     margin-bottom: .5%;
     margin-left: 5%;
     margin-right: 5%;
+}
+.tooltip > .tooltip-inner {
+  background-color: #0096c4; 
+  color: #FFFFFF; 
+  border: 1px solid #0181a8; 
+  padding: 15px;
+  font-size: 12px;
+  max-width: 1000px;
+  width: 1000px;
+}
+.tooltip.top > .tooltip-arrow {
+  border-top: 5px solid #0181a8;
+}
+#descHover{
+    font-size: 10px;
+}
+.bookRecord:hover {
+    border: 1px solid black;
+    background-color: #EBEBEB;
+    border-color: #ADADAD;
+    cursor: pointer;
+    
+}
+.bookRecord{
+    text-align: left;
+    width:100%;
+    height:125px;
+}
+input[type=text]:hover {
+        background-color:#F0F0F0;
+        border-color:#82C2EE;
+}
+input[type=text]:focus {
+        border-color:#82C2EE;
+}
+
+.form-control{
+    width:35% !important;
+}
+.searchForm{
+    font-size: 14px;
+}
+#searchInput{
+    font-size: 20px;
+    margin-bottom: 60px;
+}
+hr{
+    border-top: 1px solid #acb5c1 !important;
+}
+#search{
+    width: 30%;
+    font-size: 25px;
+}
+#dropDownMenu{
+    margin-left: -1.3%;
+
+margin-top: -3.5%;
 }

@@ -27,6 +27,7 @@ class Book {
     
     static	mapping = {
         autoTimestamp true
+        version false
         table name: "books"
         title          column: "title" 
         author         column: "author"
@@ -38,13 +39,13 @@ class Book {
         isbn           column: "isbn"
         pageCount      column: "page_count"
         rating         column: "rating"
-        numOfRates     column: "numOfRates"
+        numOfRates     column: "num_of_rates"
         smallImageLink column: "small_image_link"
-        publicDomain   column: "publicDomain"
+        publicDomain   column: "public_domain"
     }
     
 	static	constraints = {
-            description maxSize:1000
+            description maxSize:5000
             publisher   nullable:true
             yearOfPub   nullable:true
             imageLink   nullable:true
@@ -72,7 +73,6 @@ class Book {
             this.yearOfPub = yearOfPub
             this.description = description
         }
-        
 	/*
 	 * Methods of the Domain Class
 	 */
@@ -80,4 +80,21 @@ class Book {
 //	public String toString() {
 //		return "${name}";
 //	}
+        /****************************************************************************************************************************************************************************************************
+        *METHOD -This method will return the description shortened to the first three sentences. If the description has yet to be set when this method is called an illegalArgumentExpection willl be thrown*
+        *****************************************************************************************************************************************************************************************************/
+        public String getShorterDescription(){
+             if(this.description){
+                 String shorterDescription
+                 int indexOfThirdPeriod = BookUtility.ordinalIndexOf(this.description,".",3)
+                 
+                 shorterDescription = this.description.substring(0,indexOfThirdPeriod)
+                 if(indexOfThirdPeriod > 4)
+                    return shorterDescription
+                 else
+                    return this.description
+             }else{
+                 throw new IllegalArgumentException("Cannot get shorter description when no description is set.")
+             }
+         }
 }

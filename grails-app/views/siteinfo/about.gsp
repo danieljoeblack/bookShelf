@@ -17,6 +17,7 @@
 			good looking template for your project. It uses the Bootstrap web
 			page template by Twitter and provides adapted scaffolding templates
 			for standard web pages.</p>
+                <p>books by Abir Alward from the Noun Project</p>
 	</section>
 
 </body>

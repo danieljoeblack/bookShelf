@@ -15,6 +15,11 @@ class BookSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "test getShorterDescription"() {
+        Book book = new Book();
+        book.setDescription("This.Description.will.be.cut.shorter")
+        
+        expect:
+        book.getShorterDescription() == "This.Description.will."
     }
 }

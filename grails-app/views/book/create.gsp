@@ -3,12 +3,14 @@
 <html>
 
 <head>
-	<meta name="layout" content="kickstart" />
+	
+      
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}" />
 	<title><g:message code="default.create.label" args="[entityName]" /></title>
+        <meta name="layout" content="kickstart" />
 </head>
-
+ 
 <body>
 
 	<section id="create-book" class="first">
@@ -29,7 +31,12 @@
 		</g:form>
 
 	</section>
-
+        
+        <script>
+        $(document).ready(function () {
+            $(".droppeddown-toggle").dropdown();
+        });
+        </script>
 </body>
 
 </html>
