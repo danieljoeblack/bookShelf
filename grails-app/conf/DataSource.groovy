@@ -30,11 +30,11 @@ environments {
     }
     test {
         dataSource {
-            url = "mysql:dbname=localdb;host=127.0.0.1:54306;charset=utf8"
-            driverClassName = "com.mysql.jdbc.Driver"
+            url = "jdbc:sqlserver://dansbookshelf.database.windows.net:1433;database=dansbookshelf;user=danieljoeblack@dansbookshelf;password=syncmaster950B;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
+            driverClassName = "com.sql.jdbc.Driver"
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-            username = "daniel"
-            password = "syncmaster9502"  // todo: production needs a server file for credentials*/
+            username = "danieljoeblack@dansbookshelf"
+            password = "syncmaster950B"  // todo: production needs a server file for credentials*/
         }
     }
     production {
