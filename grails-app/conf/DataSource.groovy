@@ -30,8 +30,11 @@ environments {
     }
     test {
         dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            url = "mysql:dbname=localdb;host=127.0.0.1:54306;charset=utf8"
+            driverClassName = "com.mysql.jdbc.Driver"
+            dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+            username = "daniel"
+            password = "syncmaster9502"  // todo: production needs a server file for credentials*/
         }
     }
     production {
