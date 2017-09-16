@@ -1,10 +1,18 @@
-dataSource {
+/*dataSource {
     pooled = true
     jmxExport = true
     driverClassName = "org.h2.Driver"
     username = "sa"
     password = ""
-}
+}*/
+
+dataSource {
+            url = "jdbc:mysql://127.0.0.1:55003;database=localdb;user=azure;password=6#vWHD_\$"
+            driverClassName = "com.sql.jdbc.Driver"
+            dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+            username = "azure"
+            password = "6#vWHD_\$"  // todo: production needs a server file for credentials*/
+        }
 hibernate {
     cache.use_second_level_cache = true
     cache.use_query_cache = false
@@ -14,12 +22,12 @@ hibernate {
 }
 
 // environment specific settings
-environments {
+/*environments {
     development {
-        /*dataSource {
+        dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-        }*/
+        }
         dataSource {
             url = "jdbc:mysql://localhost:3306/book_shelf?autoReconnect=true&useSSL=false"
             driverClassName = "com.mysql.jdbc.Driver"
@@ -30,11 +38,11 @@ environments {
     }
     test {
         dataSource {
-            url = "jdbc:sqlserver://dansbookshelf.database.windows.net:1433;database=dansbookshelf;user=danieljoeblack@dansbookshelf;password=syncmaster950B;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
+            url = "jdbc:mysql://127.0.0.1:55003;database=localdb;user=azure;password=6#vWHD_\$;"
             driverClassName = "com.sql.jdbc.Driver"
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
             username = "danieljoeblack@dansbookshelf"
-            password = "syncmaster950B"  // todo: production needs a server file for credentials*/
+            password = "syncmaster950B"  // todo: production needs a server file for credentials
         }
     }
     production {
@@ -63,4 +71,4 @@ environments {
             }
         }
     }
-}
+}*/
