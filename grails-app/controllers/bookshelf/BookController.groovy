@@ -8,7 +8,7 @@ import grails.transaction.Transactional
  * BookController
  * A controller class handles incoming web requests and performs actions such as redirects, rendering views and so on.
  */
-@Transactional(readOnly = true)
+@Transactional(readOnly = false)
 class BookController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -24,6 +24,15 @@ class BookController {
     
     def booksFound(){
         render (view:"booksFound")
+    }
+    
+    def bookSearch(){
+        render (view:"bookSearch")
+    }
+    
+    def freeBooks(){
+        println "hit it"
+        render (view:"freeBooks")
     }
     
     def uploadBooks(){
@@ -71,6 +80,7 @@ class BookController {
     /********************************************************************************************
     *ACTION-This action will find all checked boxes on the page and delete the products selected*
     *********************************************************************************************/
+    @Transactional
     def deleteCheckedBooks(){
         //vars
         int numberOfItemsPossiblyChecked
@@ -160,7 +170,27 @@ class BookController {
         render(view:"googleInfo")
     }
     
-    
+    def addToBookShelf(){
+        String title = params.title ? params.title : ""
+        String author = params.author ? params.author : ""
+        String publisher = params.publisher ? params.publisher : ""
+        String description = params.description ? params.description : ""
+        String yearOfPub = params.yearOfPub ? params.yearOfPub : ""
+        String imageLink = params.imageLink ? params.imageLink : ""
+        String genre = params.genre ? params.genre : ""
+        String isbn = params.isbn ? params.isbn : ""
+        String pageCount = params.pageCount ? params.pageCount : ""
+        String rating = params.rating ? params.rating : ""
+        String numOfRates = params.numOfRates ? params.numOfRates : ""
+        String smallImageLink = params.smallImageLink ? params.smallImageLink : ""
+        String publicDomain = params.publicDomain ? params.publicDomain : ""
+        String downloadLinkEpub = params.downloadLinkEpub ? params.downloadLinkEpub : ""
+        String downloadLinkPdf = params.downloadLinkPdf ? params.downloadLinkPdf : "" 
+        Book book = new Book(title,author,publisher,description,yearOfPub,imageLink,genre,isbn,pageCount,rating,numOfRates,smallImageLink,publicDomain,downloadLinkEpub,downloadLinkPdf)
+        book.save(failOnError:true,flush:true)
+        render view:"show", model:[bookInstance:book]
+        
+    }
     
     def show(Book bookInstance) {
         render view:"show", model:[bookInstance:bookInstance]

@@ -3,3 +3,8 @@
 *.iml
 .classpath
 .project
+*/target/*
+*/target/**
+/target/
+target/
+target/stacktrace.log

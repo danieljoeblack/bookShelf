@@ -5,14 +5,6 @@
     username = "sa"
     password = ""
 }*/
-
-dataSource {
-            url = "jdbc:mysql://127.0.0.1:55003;database=localdb;user=azure;password=6#vWHD_\$"
-            driverClassName = "com.sql.jdbc.Driver"
-            dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-            username = "azure"
-            password = "6#vWHD_\$"  // todo: production needs a server file for credentials*/
-        }
 hibernate {
     cache.use_second_level_cache = true
     cache.use_query_cache = false
@@ -22,27 +14,27 @@ hibernate {
 }
 
 // environment specific settings
-/*environments {
+environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
         }
-        dataSource {
+        /*dataSource {
             url = "jdbc:mysql://localhost:3306/book_shelf?autoReconnect=true&useSSL=false"
             driverClassName = "com.mysql.jdbc.Driver"
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
             username = "root"
             password = "syncmaster9502"
-        }
+        }*/
     }
     test {
         dataSource {
-            url = "jdbc:mysql://127.0.0.1:55003;database=localdb;user=azure;password=6#vWHD_\$;"
-            driverClassName = "com.sql.jdbc.Driver"
+            url = "jdbc:mysql://127.0.0.1:50078/localdb"
+            driverClassName = "com.mysql.jdbc.Driver"
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-            username = "danieljoeblack@dansbookshelf"
-            password = "syncmaster950B"  // todo: production needs a server file for credentials
+            username = "azure"
+            password = "6#vWHD_\$"  // todo: production needs a server file for credentials
         }
     }
     production {
@@ -71,4 +63,4 @@ hibernate {
             }
         }
     }
-}*/
+}

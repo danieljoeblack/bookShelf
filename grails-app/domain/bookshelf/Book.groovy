@@ -24,6 +24,8 @@ class Book {
         String numOfRates
         String smallImageLink
         String publicDomain
+        String downloadLinkEpub
+        String downloadLinkPdf
     
     static	mapping = {
         autoTimestamp true
@@ -73,6 +75,25 @@ class Book {
             this.yearOfPub = yearOfPub
             this.description = description
         }
+        
+    //new full constructor
+        public Book(String title,String author,String publisher,String description,String yearOfPub,String imageLink,String genre,String isbn,String pageCount,String rating,String numOfRates,String smallImageLink,String publicDomain,String downloadLinkEpub, String downloadLinkPdf){
+            this.title = title
+            this.author = author 
+            this.publisher = publisher
+            this.yearOfPub = yearOfPub
+            this.description = description
+            this.imageLink = imageLink
+            this.genre = genre
+            this.isbn = isbn
+            this.pageCount = pageCount
+            this.rating = rating
+            this.numOfRates = numOfRates
+            this.smallImageLink = smallImageLink
+            this.publicDomain = publicDomain
+            this.downloadLinkEpub = downloadLinkEpub
+            this.downloadLinkPdf = downloadLinkPdf
+        }
 	/*
 	 * Methods of the Domain Class
 	 */
@@ -94,7 +115,7 @@ class Book {
                  else
                     return this.description
              }else{
-                 throw new IllegalArgumentException("Cannot get shorter description when no description is set.")
+                 return ""
              }
          }
 }

@@ -172,7 +172,7 @@ input[type=text]:focus {
 hr{
     border-top: 1px solid #acb5c1 !important;
 }
-#search{
+.search{
     width: 30%;
     font-size: 25px;
 }

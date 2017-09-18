@@ -7,7 +7,7 @@
 	<meta name="layout" content="kickstart" />
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}" />
-	<title><g:message code="default.list.label" args="[entityName]" /></title>
+	<title>Book Shelf</title>
 </head>
 
 <body>                

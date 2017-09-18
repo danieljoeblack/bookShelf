@@ -129,6 +129,22 @@
 				</div>
 			</div>
                         
+                        <div hidden class="${hasErrors(bean: bookInstance, field: 'downloadLinkPdf', 'error')} ">
+				<label for="downloadLinkPdf" class="control-label"><g:message code="book.description.label" default="downloadLinkPdf" /></label>
+				<div>
+					<g:textField ng-model="downloadLinkPdf" class="form-control" name="downloadLinkPdf" value="${bookInstance?.downloadLinkPdf}"/>
+					<span class="help-inline">${hasErrors(bean: bookInstance, field: 'downloadLinkPdf', 'error')}</span>
+				</div>
+			</div>
+                        
+                        <div hidden class="${hasErrors(bean: bookInstance, field: 'downloadLinkEpub', 'error')} ">
+				<label for="downloadLinkEpub" class="control-label"><g:message code="book.description.label" default="downloadLinkEpub" /></label>
+				<div>
+					<g:textField ng-model="downloadLinkEpub" class="form-control" name="downloadLinkEpub" value="${bookInstance?.downloadLinkEpub}"/>
+					<span class="help-inline">${hasErrors(bean: bookInstance, field: 'downloadLinkEpub', 'error')}</span>
+				</div>
+			</div>
+                        
                         
     </div>
     <script>
@@ -243,6 +259,13 @@
                     }else{
                         $scope.isbn = ""
                         $('#isbn').css('background-color', '#dfe575')
+                    }
+                    if(true){
+                        $('#downloadLinkPdf').css('background-color', '#ffffff')
+                         $scope.downloadLinkPdf = item.volumeInfo.industryIdentifiers[0].identifier
+                    }else{
+                        $scope.isbn = ""
+                        $('#downloadLinkPdf').css('background-color', '#dfe575')
                     }
             }
             $scope.searchBook = function(){
