@@ -90,6 +90,7 @@
                                         <g:if test="${fieldValue(bean: bookInstance, field: "publicDomain")}">
                                             <p>In the Public Domain: ${fieldValue(bean: bookInstance, field: "publicDomain")}</p>
                                         </g:if>
+                                        MLA Citation: ${raw(bookInstance.getMlaCitationAsHtml())}
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

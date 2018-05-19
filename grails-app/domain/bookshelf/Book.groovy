@@ -118,4 +118,31 @@ class Book {
                  return ""
              }
          }
+         
+         public String getMlaCitationAsHtml(){
+            String firstName
+            String lastName
+            String pubDate
+            String publisherString
+            if(author){
+                lastName = this.author.substring(this.author.lastIndexOf(" "),this.author.length());
+                firstName = this.author.indexOf(" ")!=-1?","+this.author.substring(0,this.author.indexOf(" "))+".":""
+            }
+             else{
+                lastName=""
+                firstName=""
+             }
+             if(publisher){
+                 publisherString = publisher
+             }else{
+                 publisherString = "n.p"
+             }
+             if(yearOfPub){
+                 pubDate = yearOfPub
+             }else{
+                 pubDate = "n.d"
+             }
+             String htmlCode = "<p class='mlaCite'>${lastName}${firstName}<span style='font-style:italic'>${title}.</span>${publisherString},${pubDate}</p>"
+             return htmlCode
+         }
 }

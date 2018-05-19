@@ -30,9 +30,8 @@ class BookController {
         render (view:"bookSearch")
     }
     
-    def freeBooks(){
-        println "hit it"
-        render (view:"freeBooks")
+    def dictionary(){
+        render (view:"dictionary")
     }
     
     def uploadBooks(){
